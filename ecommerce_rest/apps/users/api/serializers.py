@@ -1,6 +1,9 @@
 from rest_framework import serializers
 from apps.users.models import User
-
+class UserTokenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'last_name', 'name')
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -13,6 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
         return user   
 
     def update(self, instance, validated_data):
+        print('passing---------',validated_data['password'])
         updated_user = super().update(instance, validated_data)
         updated_user.set_password(validated_data['password'])
         updated_user.save()

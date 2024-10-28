@@ -44,7 +44,7 @@ def user_detail_api_view(request,pk=None):
         
         user = User.objects.filter(id = pk).first()
         print('passing update?', request.data)
-        user_serializer = TestUserSerializer(user, data = request.data, context = request.data)
+        user_serializer = UserSerializer(user, data = request.data, context = request.data)
         if user_serializer.is_valid():
             user_serializer.save()
             return Response(user_serializer.data)
