@@ -16,7 +16,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+TOKEN_EXPIRED_AFTER_SECONDS = 60
 # Application definition
 
 

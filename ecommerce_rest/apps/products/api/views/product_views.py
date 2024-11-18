@@ -2,10 +2,10 @@ from rest_framework import generics, status, viewsets
 from apps.base.api import GeneralListApiView
 from apps.products.api.serializers.product_serializer import ProductSerializer
 from rest_framework.response import Response
-
+from apps.users.authentication import Authentication
 #🥇 keep everything in the same class, splited by crud methods
 # to use a viewset we need to change the way how we consume him and use a router
-class ProductViewSet(viewsets.ModelViewSet):
+class ProductViewSet(Authentication, viewsets.ModelViewSet):
     serializer_class = ProductSerializer
     queryset = serializer_class.Meta.model.objects.filter(state = True)
     def get_queryset(self, pk = None):
